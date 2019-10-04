@@ -70,7 +70,7 @@ public enum ReasonCode {
     NULL_IDENTITY(0x07),
 
     /**
-     * [0x08] Peer quit voluntarily
+     * [0x08] PeerConnectionData quit voluntarily
      */
     PEER_QUITING(0x08),
 

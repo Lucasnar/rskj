@@ -10,7 +10,7 @@ import java.time.Instant;
  * Created by ajlopez on 29/08/2017.
  */
 public class SyncPeerStatus {
-    // Peer status
+    // PeerConnectionData status
     private Status status;
 
     private final Clock clock = Clock.systemUTC();

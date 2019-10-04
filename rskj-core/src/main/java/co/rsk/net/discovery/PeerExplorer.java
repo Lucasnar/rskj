@@ -335,7 +335,7 @@ public class PeerExplorer {
             if (result.isSuccess()) {
                 NodeID senderId = senderNode.getId();
                 this.establishedConnections.put(senderId, senderNode);
-                logger.debug("New Peer found ip:[{}] port[{}]", ip, port);
+                logger.debug("New PeerConnectionData found ip:[{}] port[{}]", ip, port);
             } else {
                 this.challengeManager.startChallenge(result.getAffectedEntry().getNode(), senderNode, this);
             }

@@ -64,7 +64,7 @@ public class PeerServerImpl implements PeerServer {
     public void start() {
         if (config.getPeerPort() > 0) {
             peerServiceExecutor = Executors.newSingleThreadExecutor(runnable -> {
-                Thread thread = new Thread(runnable, "Peer Server");
+                Thread thread = new Thread(runnable, "PeerConnectionData Server");
                 thread.setUncaughtExceptionHandler(
                         (exceptionThread, exception) -> logger.error("Unable to start peer server", exception)
                 );

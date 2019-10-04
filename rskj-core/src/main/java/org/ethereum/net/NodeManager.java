@@ -30,7 +30,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 /**
- * The central class for Peer Discovery machinery.
+ * The central class for PeerConnectionData Discovery machinery.
  * <p>
  * The NodeManager manages info on all the Nodes discovered by the peer discovery
  * protocol, routes protocol messages to the corresponding NodeHandlers and

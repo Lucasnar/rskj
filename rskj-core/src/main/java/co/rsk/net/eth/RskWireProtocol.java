@@ -169,7 +169,7 @@ public class RskWireProtocol extends SimpleChannelInboundHandler<EthMessage> imp
                 ethState = EthState.STATUS_FAILED;
                 recordEvent(EventType.INCOMPATIBLE_PROTOCOL);
                 disconnect(ReasonCode.INCOMPATIBLE_PROTOCOL);
-                ctx.pipeline().remove(this); // Peer is not compatible for the 'eth' sub-protocol
+                ctx.pipeline().remove(this); // PeerConnectionData is not compatible for the 'eth' sub-protocol
                 return;
             }
 
@@ -294,7 +294,7 @@ public class RskWireProtocol extends SimpleChannelInboundHandler<EthMessage> imp
 
         // todo: reduce reputation
 
-        logger.info("Peer {}: is a bad one, drop", channel.getPeerIdShort());
+        logger.info("PeerConnectionData {}: is a bad one, drop", channel.getPeerIdShort());
         disconnect(USELESS_PEER);
     }
 
