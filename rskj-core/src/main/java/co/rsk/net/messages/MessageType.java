@@ -260,6 +260,18 @@ public enum MessageType {
 
             return new BlockReceiptsResponseMessage(id, receipts);
         }
+    },
+    CODE_REQUEST_MESSAGE(103) {
+        @Override
+        public Message createMessage(BlockFactory blockFactory, RLPList list) {
+            RLPList message = (RLPList)RLP.decode2(list.get(1).getRLPData()).get(0);
+            byte[] rlpId = list.get(0).getRLPData();
+            byte[] blockHash = message.get(0).getRLPData();
+            byte[] codeHash = message.get(1).getRLPData();
+
+            long id = rlpId == null ? 0 : BigIntegers.fromUnsignedByteArray(rlpId).longValue();
+            return new CodeRequestMessage(id, blockHash, codeHash);
+        }
     };
 
     private int type;
