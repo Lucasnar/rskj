@@ -201,6 +201,10 @@ public class MessageVisitor {
         blockProcessor.processNewBlockHashesMessage(sender, message);
     }
 
+    public void apply(CodeRequestMessage message) {
+        this.lightProcessor.processCodeRequest(sender, message.getId(), message.getBlockHash(), message.getAddress());
+    }
+
     public void apply(TransactionsMessage message) {
         if (blockProcessor.hasBetterBlockToSync()) {
             loggerMessageProcess.debug("Message[{}] not processed.", message.getMessageType());

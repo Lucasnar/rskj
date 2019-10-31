@@ -58,4 +58,14 @@ public class LightProcessor {
     public void processBlockReceiptsResponse(MessageChannel sender, BlockReceiptsResponseMessage message) {
         throw new UnsupportedOperationException();
     }
+
+    public void processCodeRequest(MessageChannel sender, long requestId, byte[] blockHash, byte[] address) {
+        logger.trace("Processing code request {} block {} code {} from {}", requestId, Hex.toHexString(blockHash), Hex.toHexString(address), sender.getPeerNodeID());
+        final Block block = blockSyncService.getBlockFromStoreOrBlockchain(blockHash);
+
+        if (block == null) {
+            // Don't waste time sending an empty response.
+            return;
+        }
+    }
 }

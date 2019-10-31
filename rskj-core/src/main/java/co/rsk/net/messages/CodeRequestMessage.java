@@ -5,12 +5,12 @@ import org.ethereum.util.RLP;
 public class CodeRequestMessage extends MessageWithId {
     private long id;
     private byte[] blockHash;
-    private byte[] codeHash;
+    private byte[] address;
 
-    public CodeRequestMessage(long id, byte[] blockHash, byte[] codeHash) {
+    public CodeRequestMessage(long id, byte[] blockHash, byte[] address) {
         this.id = id;
         this.blockHash = blockHash;
-        this.codeHash = codeHash;
+        this.address = address;
     }
 
     @Override
@@ -22,14 +22,14 @@ public class CodeRequestMessage extends MessageWithId {
         return blockHash;
     }
 
-    public byte[] getCodeHash() {
-        return codeHash;
+    public byte[] getAddress() {
+        return address;
     }
 
     @Override
     protected byte[] getEncodedMessageWithoutId() {
         byte[] rlpBlockHash = RLP.encodeElement(this.blockHash);
-        byte[] rlpCodeHash = RLP.encodeElement(this.codeHash);
+        byte[] rlpCodeHash = RLP.encodeElement(this.address);
         return RLP.encodeList(rlpBlockHash, rlpCodeHash);
     }
 
@@ -40,6 +40,6 @@ public class CodeRequestMessage extends MessageWithId {
 
     @Override
     public void accept(MessageVisitor v) {
-
+        v.apply(this);
     }
 }
